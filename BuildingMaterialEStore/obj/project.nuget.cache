@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "6o6V1/gnxgQl3XPE47KNTmCDyueQuyaUdervw7oBKWb56phLyE/V3mQrNWtWkSW+UHVuDq86Ca5vlS8a6Fh8zg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\chase\\Desktop\\Projects\\BuildingMaterialEStore\\BuildingMaterialEStore\\BuildingMaterialEStore.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\chase\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\3.1.23\\microsoft.netcore.app.host.win-x64.3.1.23.nupkg.sha512"
+  ],
+  "logs": []
+}
