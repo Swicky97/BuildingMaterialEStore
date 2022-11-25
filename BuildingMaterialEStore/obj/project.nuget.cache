@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "70kbQtbmsQPR0iDmNF2AaYfekf6sLroHuKZNa3QG1IfM6byFCY4Z2tV4Lx8iZaLZ7PVN4I/RRrOLqubjm3bNVw==",
+  "dgSpecHash": "D9UjvFCUcKptuI4sk5nx9kWcW3lM+19DZXMe+1mr3Qvq8OkU0nZZB+2smUPe1r+0oImi7WPyMWoELCSynO4fZg==",
   "success": true,
   "projectFilePath": "C:\\Users\\chase\\Desktop\\Projects\\BuildingMaterialEStore\\BuildingMaterialEStore\\BuildingMaterialEStore.csproj",
   "expectedPackageFiles": [
@@ -42,8 +42,7 @@
     "C:\\Users\\chase\\.nuget\\packages\\system.componentmodel.annotations\\4.7.0\\system.componentmodel.annotations.4.7.0.nupkg.sha512",
     "C:\\Users\\chase\\.nuget\\packages\\system.diagnostics.diagnosticsource\\4.7.0\\system.diagnostics.diagnosticsource.4.7.0.nupkg.sha512",
     "C:\\Users\\chase\\.nuget\\packages\\system.memory\\4.5.3\\system.memory.4.5.3.nupkg.sha512",
-    "C:\\Users\\chase\\.nuget\\packages\\system.text.json\\4.7.0\\system.text.json.4.7.0.nupkg.sha512",
-    "C:\\Users\\chase\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\3.1.23\\microsoft.netcore.app.host.win-x64.3.1.23.nupkg.sha512"
+    "C:\\Users\\chase\\.nuget\\packages\\system.text.json\\4.7.0\\system.text.json.4.7.0.nupkg.sha512"
   ],
   "logs": []
 }
