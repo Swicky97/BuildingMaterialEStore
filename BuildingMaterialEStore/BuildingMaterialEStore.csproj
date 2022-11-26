@@ -15,9 +15,7 @@
 
   <ItemGroup>
     <Folder Include="Controllers\" />
-    <Folder Include="Messages\DataTransferObjects\" />
-    <Folder Include="Messages\Response\" />
-    <Folder Include="Messages\Requests\" />
+    <Folder Include="Messages\DataTransferObjects\Shared\" />
     <Folder Include="Service\Implementations\" />
   </ItemGroup>
 
