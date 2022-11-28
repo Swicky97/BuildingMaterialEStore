@@ -1,6 +1,8 @@
 using BuildingMaterialEStore.Database;
 using BuildingMaterialEStore.Repositories;
 using BuildingMaterialEStore.Repositories.Implementations;
+using BuildingMaterialEStore.Service;
+using BuildingMaterialEStore.Service.Implementations;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -27,6 +29,11 @@ namespace BuildingMaterialEStore
             services.AddTransient<IBrandRepository, BrandRepository>();
             services.AddTransient<ICategoryRepository, CategoryRepository>();
             services.AddTransient<IProductRepository, ProductRepository>();
+
+            services.AddTransient<IBrandService, BrandService>();
+            services.AddTransient<ICategoryService, CategoryService>();
+            services.AddTransient<IProductService, ProductService>();
+            services.AddTransient<ICatalogueService, CatalogueService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

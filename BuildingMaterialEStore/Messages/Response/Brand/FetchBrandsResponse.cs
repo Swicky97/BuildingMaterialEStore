@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace BuildingMaterialEStore.Messages.Response.Brand
 {
-    public class FetchBrandResponse : ResponseBase
+    public class FetchBrandsResponse : ResponseBase
     {
         public int BrandsPerPage { get; set; }
         public bool HasPreviousPages { get; set; }
