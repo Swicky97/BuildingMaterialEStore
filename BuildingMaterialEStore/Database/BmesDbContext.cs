@@ -1,4 +1,5 @@
-﻿using BuildingMaterialEStore.Models.Cart;
+﻿using BuildingMaterialEStore.Models.Address;
+using BuildingMaterialEStore.Models.Cart;
 using BuildingMaterialEStore.Models.Product;
 using Microsoft.EntityFrameworkCore;
 
@@ -15,6 +16,7 @@ namespace BuildingMaterialEStore.Database
         public DbSet<Product> Products { get; set; }
         public DbSet<Cart> Carts { get; set; }
         public DbSet<CartItem> CartItems { get; set; }
+        public DbSet<Address> Addresses { get; set; }
 
     }
 }

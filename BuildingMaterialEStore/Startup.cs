@@ -5,9 +5,11 @@ using BuildingMaterialEStore.Service;
 using BuildingMaterialEStore.Service.Implementations;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 
 namespace BuildingMaterialEStore
@@ -25,6 +27,7 @@ namespace BuildingMaterialEStore
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "Building Materials E-Store", Version = "v1" });
@@ -35,6 +38,7 @@ namespace BuildingMaterialEStore
             services.AddTransient<IProductRepository, ProductRepository>();
             services.AddTransient<ICartRepository, CartRepository>();
             services.AddTransient<ICartItemRepository, CartItemRepository>();
+            services.AddTransient<IAddressRepository, AddressRepository>();
 
             services.AddTransient<IBrandService, BrandService>();
             services.AddTransient<ICategoryService, CategoryService>();

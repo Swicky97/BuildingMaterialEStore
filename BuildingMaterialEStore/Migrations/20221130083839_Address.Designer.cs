@@ -3,14 +3,16 @@ using System;
 using BuildingMaterialEStore.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BuildingMaterialEStore.Migrations
 {
     [DbContext(typeof(BmesDbContext))]
-    partial class BmesDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221130083839_Address")]
+    partial class Address
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
