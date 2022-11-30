@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace BuildingMaterialEStore.Repositories
 {
-    interface IAddressRepository
+    public interface IAddressRepository
     {
         Address FindAddressById(long id);
         IEnumerable<Address> GetAllAddresses();

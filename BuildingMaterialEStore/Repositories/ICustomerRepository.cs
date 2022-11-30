@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace BuildingMaterialEStore.Repositories
 {
-    interface ICustomerRepository
+    public interface ICustomerRepository
     {
         Customer FindCustomerById(long id);
         IEnumerable<Customer> GetAllCustomers();

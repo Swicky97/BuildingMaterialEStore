@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace BuildingMaterialEStore.Repositories
 {
-    interface IPersonRepository
+    public interface IPersonRepository
     {
         Person FindPersonById(long id);
         IEnumerable<Person> GetAllPeople();
