@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BuildingMaterialEStore.Migrations
 {
-    public partial class productCatalogue : Migration
+    public partial class ProductCatalogue : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

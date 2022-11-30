@@ -3,77 +3,20 @@ using System;
 using BuildingMaterialEStore.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BuildingMaterialEStore.Migrations
 {
     [DbContext(typeof(BmesDbContext))]
-    partial class BmesDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221129072744_ProductCatalogue")]
+    partial class ProductCatalogue
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "3.1.0");
-
-            modelBuilder.Entity("BuildingMaterialEStore.Models.Cart.Cart", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("CartStatus")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<DateTimeOffset>("CreateDate")
-                        .HasColumnType("TEXT");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<DateTimeOffset>("ModifiedDate")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("UniqueCartId")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Carts");
-                });
-
-            modelBuilder.Entity("BuildingMaterialEStore.Models.Cart.CartItem", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<long>("CartId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<DateTimeOffset>("CreateDate")
-                        .HasColumnType("TEXT");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<DateTimeOffset>("ModifiedDate")
-                        .HasColumnType("TEXT");
-
-                    b.Property<long>("ProductId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CartId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("CartItems");
-                });
 
             modelBuilder.Entity("BuildingMaterialEStore.Models.Product.Brand", b =>
                 {
@@ -224,21 +167,6 @@ namespace BuildingMaterialEStore.Migrations
                     b.HasIndex("CategoryId");
 
                     b.ToTable("Products");
-                });
-
-            modelBuilder.Entity("BuildingMaterialEStore.Models.Cart.CartItem", b =>
-                {
-                    b.HasOne("BuildingMaterialEStore.Models.Cart.Cart", "Cart")
-                        .WithMany("CartItems")
-                        .HasForeignKey("CartId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("BuildingMaterialEStore.Models.Product.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("BuildingMaterialEStore.Models.Product.Product", b =>

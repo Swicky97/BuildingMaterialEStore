@@ -1,4 +1,6 @@
-﻿using BuildingMaterialEStore.Messages.DataTransferObjects.Product;
+﻿using BuildingMaterialEStore.Messages.DataTransferObjects.Cart;
+using BuildingMaterialEStore.Messages.DataTransferObjects.Product;
+using BuildingMaterialEStore.Models.Cart;
 using BuildingMaterialEStore.Models.Product;
 using System.Collections.Generic;
 
@@ -44,6 +46,17 @@ namespace BuildingMaterialEStore.Messages
             return brandDto;
         }
 
+        public List<BrandDto> MapToBrandDtos(IEnumerable<Brand> brands)
+        {
+            var brandDtos = new List<BrandDto>();
+            foreach (var brand in brands)
+            {
+                var brandDto = MapToBrandDto(brand);
+                brandDtos.Add(brandDto);
+            }
+            return brandDtos;
+        }
+
         public Category MapToCategory(CategoryDto categoryDto)
         {
             var category = new Category
@@ -80,6 +93,17 @@ namespace BuildingMaterialEStore.Messages
             }
             
             return categoryDto;
+        }
+
+        public List<CategoryDto> MapToCategoryDtos(IEnumerable<Category> categories)
+        {
+            var categoryDtos = new List<CategoryDto>();
+            foreach (var category in categories)
+            {
+                var categoryDto = MapToCategoryDto(category);
+                categoryDtos.Add(categoryDto);
+            }
+            return categoryDtos;
         }
 
         public Product MapToProduct(ProductDto productDto)
@@ -142,28 +166,6 @@ namespace BuildingMaterialEStore.Messages
             return productDto;
         }
 
-        public List<BrandDto> MapToBrandDtos(IEnumerable<Brand> brands)
-        {
-            var brandDtos = new List<BrandDto>();
-            foreach (var brand in brands)
-            {
-                var brandDto = MapToBrandDto(brand);
-                brandDtos.Add(brandDto);
-            }
-            return brandDtos;
-        }
-
-        public List<CategoryDto> MapToCategoryDtos(IEnumerable<Category> categories)
-        {
-            var categoryDtos = new List<CategoryDto>();
-            foreach (var category in categories)
-            {
-                var categoryDto = MapToCategoryDto(category);
-                categoryDtos.Add(categoryDto);
-            }
-            return categoryDtos;
-        }
-
         public List<ProductDto> MapToProductDtos(IEnumerable<Product> products)
         {
             var productDtos = new List<ProductDto>();
@@ -173,6 +175,79 @@ namespace BuildingMaterialEStore.Messages
                 productDtos.Add(productDto);
             }
             return productDtos;
+        }
+
+        public Cart MapToCart(CartDto cartDto)
+        {
+            var cart = new Cart();
+
+            if (cartDto != null)
+            {
+                cart.Id = cartDto.Id;
+                cart.UniqueCartId = cartDto.UniqueCartId;
+                cart.CartStatus = (CartStatus)cartDto.CartStatus;
+                cart.CreateDate = cartDto.CreateDate;
+                cart.ModifiedDate = cartDto.ModifiedDate;
+                cart.IsDeleted = cartDto.IsDeleted;
+            };
+
+            return cart;
+        }
+
+        public CartDto MapToCartDto(Cart cart)
+        {
+            var cartDto = new CartDto();
+            if (cart != null)
+            {
+                cartDto.Id = cart.Id;
+                cartDto.UniqueCartId = cart.UniqueCartId;
+                cartDto.CartStatus = (int)cart.CartStatus;
+                cartDto.CreateDate = cart.CreateDate;
+                cartDto.ModifiedDate = cart.ModifiedDate;
+                cartDto.IsDeleted = cart.IsDeleted;
+            }
+            return cartDto;
+        }
+
+        public CartItem MapToCartItem(CartItemDto cartItemDto)
+        {
+            return new CartItem
+            {
+                CartId = cartItemDto.CartId,
+                ProductId = cartItemDto.Product.Id,
+                Quantity = cartItemDto.Quantity
+            };
+        }
+
+        public CartItemDto MapToCartItemDto(CartItem cartItem)
+        {
+            CartItemDto cartItemDto = null;
+
+            if (cartItem.Product != null)
+            {
+                var productDto = MapToProductDto(cartItem.Product);
+
+                cartItemDto = new CartItemDto
+                {
+                    Id = cartItem.Id,
+                    CartId = cartItem.CartId,
+                    Product = productDto,
+                    Quantity = cartItem.Quantity
+                };
+            }
+
+            return cartItemDto;
+        }
+
+        public List<CartItemDto> MapToCartItemDtos(IEnumerable<CartItem> cartItems)
+        {
+            var cartItemDtos = new List<CartItemDto>();
+            foreach (var cartItem in cartItems)
+            {
+                var cartItemDto = MapToCartItemDto(cartItem);
+                cartItemDtos.Add(cartItemDto);
+            }
+            return cartItemDtos;
         }
     }
 }
