@@ -1,9 +1,15 @@
 ﻿using BuildingMaterialEStore.Messages.DataTransferObjects.Address;
 using BuildingMaterialEStore.Messages.DataTransferObjects.Cart;
+using BuildingMaterialEStore.Messages.DataTransferObjects.Customer;
+using BuildingMaterialEStore.Messages.DataTransferObjects.Order;
 using BuildingMaterialEStore.Messages.DataTransferObjects.Product;
+using BuildingMaterialEStore.Messages.DataTransferObjects.Shared;
+using BuildingMaterialEStore.Messages.Requests.Order;
 using BuildingMaterialEStore.Models.Address;
 using BuildingMaterialEStore.Models.Cart;
+using BuildingMaterialEStore.Models.Customer;
 using BuildingMaterialEStore.Models.Product;
+using BuildingMaterialEStore.Models.Shared;
 using System.Collections.Generic;
 
 namespace BuildingMaterialEStore.Messages
@@ -275,7 +281,6 @@ namespace BuildingMaterialEStore.Messages
         public AddressDto MapToAddressDto(Address address)
         {
             var addressDto = new AddressDto();
-
             if (address != null)
             {
                 addressDto.Id = address.Id;
@@ -292,6 +297,160 @@ namespace BuildingMaterialEStore.Messages
 
             };
             return addressDto;
+        }
+        public List<AddressDto> MapToAddressDtos(IEnumerable<Address> addresses)
+        {
+            var addressDtos = new List<AddressDto>();
+            foreach (var address in addresses)
+            {
+                var addressDto = MapToAddressDto(address);
+                addressDtos.Add(addressDto);
+            }
+            return addressDtos;
+        }
+
+        public Customer MapToCustomer(CustomerDto customerDto)
+        {
+            var person = new Person
+            {
+                Id = customerDto.Id,
+                FirstName = customerDto.FirstName,
+                MiddleName = customerDto.MiddleName,
+                LastName = customerDto.LastName,
+                EmailAddress = customerDto.EmailAddress,
+                PhoneNumber = customerDto.PhoneNumber,
+                Gender = (Gender)customerDto.Gender,
+                DateOfBirth = customerDto.DateOfBirth,
+                CreateDate = customerDto.CreateDate,
+                ModifiedDate = customerDto.ModifiedDate,
+                IsDeleted = customerDto.IsDeleted
+            };
+
+            return new Customer
+            {
+                Id = customerDto.Id,
+                Person = person
+            };
+        }
+
+        public CustomerDto MapToCustomerDto(Customer customer)
+        {
+            var customerDto = new CustomerDto
+            {
+                Id = customer.Id,
+                FirstName = customer.Person.FirstName,
+                MiddleName = customer.Person.MiddleName,
+                LastName = customer.Person.LastName,
+                EmailAddress = customer.Person.EmailAddress,
+                PhoneNumber = customer.Person.PhoneNumber,
+                Gender = (int)customer.Person.Gender,
+                DateOfBirth = customer.Person.DateOfBirth,
+                CreateDate = customer.CreateDate,
+                ModifiedDate = customer.ModifiedDate,
+                IsDeleted = customer.IsDeleted
+            };
+
+            return customerDto;
+        }
+
+        public Person MapToPerson(PersonDto personDto)
+        {
+            return new Person
+            {
+                Id = personDto.Id,
+                FirstName = personDto.FirstName,
+                MiddleName = personDto.MiddleName,
+                LastName = personDto.LastName,
+                EmailAddress = personDto.EmailAddress,
+                PhoneNumber = personDto.PhoneNumber,
+                Gender = (Gender)personDto.Gender,
+                DateOfBirth = personDto.DateOfBirth,
+                CreateDate = personDto.CreateDate,
+                ModifiedDate = personDto.ModifiedDate,
+                IsDeleted = personDto.IsDeleted
+            };
+        }
+
+        public PersonDto MapToPersonDto(Person person)
+        {
+            var personDto = new PersonDto
+            {
+                Id = person.Id,
+                FirstName = person.FirstName,
+                MiddleName = person.MiddleName,
+                LastName = person.LastName,
+                EmailAddress = person.EmailAddress,
+                PhoneNumber = person.PhoneNumber,
+                Gender = (int)person.Gender,
+                DateOfBirth = person.DateOfBirth,
+                CreateDate = person.CreateDate,
+                ModifiedDate = person.ModifiedDate,
+                IsDeleted = person.IsDeleted
+            };
+
+            return personDto;
+        }
+
+        public Order MapToOrder(OrderDto orderDto)
+        {
+            return new Order
+            {
+                Id = orderDto.Id,
+                OrderTotal = orderDto.OrderTotal,
+                OrderItemTotal = orderDto.OrderTotal,
+                ShippingCharge = orderDto.ShippingCharge,
+                CustomerId = orderDto.CustomerId,
+                OrderStatus = (OrderStatus)orderDto.OrderStatus,
+                CreateDate = orderDto.CreateDate,
+                ModifiedDate = orderDto.ModifiedDate,
+                IsDeleted = orderDto.IsDeleted
+            };
+        }
+
+        public OrderDto MapToOrderDto(Order order)
+        {
+            var orderDto = new OrderDto
+            {
+                Id = order.Id,
+                OrderTotal = order.OrderTotal,
+                OrderItemTotal = order.OrderTotal,
+                ShippingCharge = order.ShippingCharge,
+                CustomerId = order.CustomerId,
+                OrderStatus = (int)order.OrderStatus,
+                CreateDate = order.CreateDate,
+                ModifiedDate = order.ModifiedDate,
+                IsDeleted = order.IsDeleted
+            };
+            return orderDto;
+        }
+
+        public OrderItem MapToOrderItem(OrderItemDto orderItemDto)
+        {
+            return new OrderItem
+            {
+                OrderId = orderItemDto.OrderId,
+                ProductId = orderItemDto.Product.Id,
+                Quantity = orderItemDto.Quantity
+            };
+        }
+
+        public OrderItemDto MapToOrderItemDto(OrderItem orderItem)
+        {
+            OrderItemDto orderItemDto = null;
+
+            if (orderItem?.Product != null)
+            {
+                var productDto = MapToProductDto(orderItem.Product);
+
+                orderItemDto = new OrderItemDto
+                {
+                    Id = orderItem.Id,
+                    OrderId = orderItem.OrderId,
+                    Product = productDto,
+                    Quantity = orderItem.Quantity
+                };
+            }
+            return orderItemDto;
         }
     }
 }
