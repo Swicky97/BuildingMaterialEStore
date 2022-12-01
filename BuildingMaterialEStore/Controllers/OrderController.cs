@@ -1,10 +1,12 @@
 ﻿using BuildingMaterialEStore.Messages.Request.Order;
 using BuildingMaterialEStore.Messages.Response.Order;
 using BuildingMaterialEStore.Service;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BuildingMaterialEStore.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class OrderController : ControllerBase
@@ -15,6 +17,7 @@ namespace BuildingMaterialEStore.Controllers
             _orderService = orderService;
         }
 
+        [Authorize]
         [HttpGet("{id}")]
         public ActionResult<GetOrderResponse> GetOrder(long id)
         {
@@ -26,6 +29,7 @@ namespace BuildingMaterialEStore.Controllers
             return getOrderResponse;
         }
 
+        [Authorize]
         [HttpGet()]
         public ActionResult<FetchOrdersResponse> GetOrders()
         {

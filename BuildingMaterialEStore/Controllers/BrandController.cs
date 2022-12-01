@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BuildingMaterialEStore.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class BrandController : ControllerBase
@@ -16,6 +17,7 @@ namespace BuildingMaterialEStore.Controllers
             _brandService = brandService;
         }
 
+        [AllowAnonymous]
         [HttpGet("{id}")]
         public ActionResult<GetBrandResponse> GetBrand(long id)
         {
@@ -27,6 +29,7 @@ namespace BuildingMaterialEStore.Controllers
             return getBrandResponse;
         }
 
+        [AllowAnonymous]
         [HttpGet()]
         public ActionResult<FetchBrandsResponse> GetBrands()
         {
@@ -35,6 +38,7 @@ namespace BuildingMaterialEStore.Controllers
             return fetchBrandsResponse;
         }
 
+        [Authorize(Roles = "Administrator")]
         [HttpPost]
         public ActionResult<CreateBrandResponse> PostBrand(CreateBrandRequest createBrandRequest) 
         {
@@ -42,6 +46,7 @@ namespace BuildingMaterialEStore.Controllers
             return createBrandResponse;
         }
 
+        [Authorize(Roles = "Administrator")]
         [HttpPut()]
         public ActionResult<UpdateBrandResponse> PutBrand(UpdateBrandRequest updateBrandRequest)
         {
@@ -49,6 +54,7 @@ namespace BuildingMaterialEStore.Controllers
             return updateBrandResponse;
         }
 
+        [Authorize(Roles = "Administrator")]
         [HttpDelete("{id}")]
         public ActionResult<DeleteBrandResponse> DeleteBrand(long id)
         {

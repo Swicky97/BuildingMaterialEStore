@@ -1,10 +1,12 @@
 ﻿using BmesRestApi.Messages.Request.Category;
 using BmesRestApi.Messages.Response.Category;
 using BuildingMaterialEStore.Service;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BuildingMaterialEStore.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class CategoryController : ControllerBase
@@ -15,6 +17,7 @@ namespace BuildingMaterialEStore.Controllers
             _categoryService = categoryService;
         }
 
+        [AllowAnonymous]
         [HttpGet("{id}")]
         public ActionResult<GetCategoryResponse> GetCategory(long id)
         {
@@ -26,6 +29,7 @@ namespace BuildingMaterialEStore.Controllers
             return getCategoryResponse;
         }
 
+        [AllowAnonymous]
         [HttpGet]
         public ActionResult<FetchCategoriesResponse> GetCategories()
         {
@@ -34,6 +38,7 @@ namespace BuildingMaterialEStore.Controllers
             return fetchCategoriesResponse;
         }
 
+        [Authorize(Roles = "Administrator")]
         [HttpPost]
         public ActionResult<CreateCategoryResponse> PostCategory(CreateCategoryRequest createCategoryRequest)
         {
@@ -41,6 +46,7 @@ namespace BuildingMaterialEStore.Controllers
             return createCategoryResponse;
         }
 
+        [Authorize(Roles = "Administrator")]
         [HttpPut()]
         public ActionResult<UpdateCategoryResponse> PutCategory(UpdateCategoryRequest updateCategoryRequest)
         {
@@ -50,6 +56,7 @@ namespace BuildingMaterialEStore.Controllers
             return updateCategoryResponse;
         }
 
+        [Authorize(Roles = "Administrator")]
         [HttpDelete("{id}")]
         public ActionResult<DeleteCategoryResponse> DeleteCategory(long id)
         {

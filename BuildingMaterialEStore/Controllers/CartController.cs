@@ -1,10 +1,12 @@
 ﻿using BuildingMaterialEStore.Messages.Request.Cart;
 using BuildingMaterialEStore.Messages.Response.Cart;
 using BuildingMaterialEStore.Service;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BuildingMaterialEStore.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class CartController : ControllerBase
@@ -15,6 +17,7 @@ namespace BuildingMaterialEStore.Controllers
             _cartService = cartService;
         }
 
+        [AllowAnonymous]
         [HttpGet]
         public ActionResult<FetchCartResponse> GetCart()
         {
@@ -22,6 +25,7 @@ namespace BuildingMaterialEStore.Controllers
             return fetchCartResponse;
         }
 
+        [AllowAnonymous]
         [HttpPost]
         public ActionResult<AddItemToCartResponse> AddItemToCart(AddItemToCartRequest addItemToCartRequest)
         {
@@ -29,6 +33,7 @@ namespace BuildingMaterialEStore.Controllers
             return addItemToCartResponse;
         }
 
+        [AllowAnonymous]
         [HttpDelete("{cartId}/{cartItemId}")]
         public ActionResult<RemoveItemFromCartResponse> RemoveItemFromCart(long cartId, long cartItemId)
         {
